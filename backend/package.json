@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This is backend of ecommerce medical store website",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon ./src/index.server.js"
   },
