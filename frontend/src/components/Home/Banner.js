@@ -14,7 +14,7 @@ const Image = styled("img")({
   height: "45%",
   width: "100%",
   // borderRadius: 10,
-  marginTop: "13%",
+  marginTop: "12%",
 });
 const responsive = {
   desktop: {

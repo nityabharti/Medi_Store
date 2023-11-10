@@ -1,8 +1,14 @@
 import React from "react";
+import { useState } from "react";
+
 import { Box, styled } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+
+//Components
+
+import LoginDialog from "../Login/LoginDialog";
 
 const CustomContainer = styled(Box)`
   display: flex;
@@ -25,6 +31,10 @@ const TextWrapper = styled(Box)`
 `;
 
 const CustomButtons = () => {
+  const [open, setOpen] = useState(false);
+  const openDialog = () => {
+    setOpen(true);
+  };
   return (
     <CustomContainer>
       <IconWrapper>
@@ -33,7 +43,8 @@ const CustomButtons = () => {
       <IconWrapper>
         <ShoppingCartOutlinedIcon style={{ color: "black" }} />
       </IconWrapper>
-      <TextWrapper>Log In / Sign Up</TextWrapper>
+      <TextWrapper onClick={() => openDialog()}>Log In / Sign Up</TextWrapper>
+      <LoginDialog open={open} setOpen={setOpen} />
       <IconWrapper>
         <AccountCircleOutlinedIcon style={{ color: "black" }} />
       </IconWrapper>

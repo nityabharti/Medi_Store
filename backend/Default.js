@@ -1,5 +1,6 @@
 import { products } from "./constants/data";
 import Product from "./model/product.schema";
+import "../backend/database/db";
 
 const DefaultData = () => {
   try {
@@ -9,3 +10,5 @@ const DefaultData = () => {
     console.log("Error while inserting default data", error.message);
   }
 };
+
+export default DefaultData;

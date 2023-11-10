@@ -1,16 +1,31 @@
-import mongoose from "mongoose";
+const { MongoClient } = require("mongodb");
 
-export const Connection = async (username, password) => {
-  const URL = `mongodb://${username}:${password}@ac-cybeavq-shard-00-00.futllgp.mongodb.net:27017,ac-cybeavq-shard-00-01.futllgp.mongodb.net:27017,ac-cybeavq-shard-00-02.futllgp.mongodb.net:27017/?ssl=true&replicaSet=atlas-c291yr-shard-0&authSource=admin&retryWrites=true&w=majority`;
+// Replace the following with your MongoDB Atlas connection string
+const uri = "your_mongodb_atlas_connection_string";
+
+// Create a new MongoClient
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+async function connectToMongoDB() {
   try {
-    await mongoose.connect(URL, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-    });
-    console.log("Database connected successfully");
-  } catch (error) {
-    console.log("Error while connecting with the database", error.message);
-  }
-};
+    // Connect to the MongoDB Atlas cluster
+    await client.connect();
 
-export default Connection;
+    console.log("Connected to MongoDB Atlas");
+
+    // You can now use `client` to interact with the database
+
+    // Example: list all databases
+    const databasesList = await client.db().admin().listDatabases();
+    console.log("Databases:", databasesList.databases);
+  } finally {
+    // Ensure that the client is closed when finished
+    await client.close();
+  }
+}
+
+// Call the function to connect to MongoDB
+connectToMongoDB();
