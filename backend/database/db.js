@@ -1,31 +1,21 @@
-const { MongoClient } = require("mongodb");
+import mongoose from "mongoose";
 
-// Replace the following with your MongoDB Atlas connection string
-const uri = "your_mongodb_atlas_connection_string";
-
-// Create a new MongoClient
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-async function connectToMongoDB() {
+const Connection = async (username, password) => {
+  // const URL = `mongodb://${username}:${password}@ecommerceweb-shard-00-00.fdvft.mongodb.net:27017,ecommerceweb-shard-00-01.fdvft.mongodb.net:27017,ecommerceweb-shard-00-02.fdvft.mongodb.net:27017/ECOMMERCE?ssl=true&replicaSet=atlas-8a6bhp-shard-0&authSource=admin&retryWrites=true&w=majority`;
+  // const URL = `mongodb://${username}:${password}@ecommerce-shard-00-00.fdvft.mongodb.net:27017,ecommerce-shard-00-01.fdvft.mongodb.net:27017,ecommerce-shard-00-02.fdvft.mongodb.net:27017/ECOMMERCE?ssl=true&replicaSet=atlas-ilaj5d-shard-0&authSource=admin&retryWrites=true&w=majority`;
+  // const URL = `mongodb://${username}:${password}@ecommerce-web-shard-00-00.wnaj9.mongodb.net:27017,ecommerce-web-shard-00-01.wnaj9.mongodb.net:27017,ecommerce-web-shard-00-02.wnaj9.mongodb.net:27017/ECOMMERCE?ssl=true&replicaSet=atlas-sjmqa0-shard-0&authSource=admin&retryWrites=true&w=majority`;
+  // const URL = `mongodb://${username}:{password}@ac-cybeavq-shard-00-00.futllgp.mongodb.net:27017,ac-cybeavq-shard-00-01.futllgp.mongodb.net:27017,ac-cybeavq-shard-00-02.futllgp.mongodb.net:27017/?ssl=true&replicaSet=atlas-c291yr-shard-0&authSource=admin&retryWrites=true&w=majority`;
+  const URL = `mongodb://${username}:${password}@ac-cybeavq-shard-00-00.futllgp.mongodb.net:27017,ac-cybeavq-shard-00-01.futllgp.mongodb.net:27017,ac-cybeavq-shard-00-02.futllgp.mongodb.net:27017/?ssl=true&replicaSet=atlas-c291yr-shard-0&authSource=admin&retryWrites=true&w=majority`;
   try {
-    // Connect to the MongoDB Atlas cluster
-    await client.connect();
-
-    console.log("Connected to MongoDB Atlas");
-
-    // You can now use `client` to interact with the database
-
-    // Example: list all databases
-    const databasesList = await client.db().admin().listDatabases();
-    console.log("Databases:", databasesList.databases);
-  } finally {
-    // Ensure that the client is closed when finished
-    await client.close();
+    await mongoose.connect(URL, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+      useFindAndModify: false,
+    });
+    console.log("Database Connected Succesfully");
+  } catch (error) {
+    console.log("Error: ", error.message);
   }
-}
+};
 
-// Call the function to connect to MongoDB
-connectToMongoDB();
+export default Connection;

@@ -11,9 +11,9 @@ dotenv.config();
 app.use("/", Router);
 
 const PORT = 8000;
-const USERNAME = process.env.DB_USERNAME;
-const PASSWORD = process.env.DB_PASSWORD;
-Connection(USERNAME, PASSWORD);
+const username = process.env.DB_USERNAME;
+const password = process.env.DB_PASSWORD;
+Connection(username, password);
 
 app.listen(PORT, () =>
   console.log(`server running successfully on PORT ${PORT} `)

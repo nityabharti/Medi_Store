@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import autoIncrement from "mongoose-auto-increment";
 
 const productSchema = new mongoose.Schema({
   id: String,
@@ -12,6 +13,9 @@ const productSchema = new mongoose.Schema({
   tagline: String,
 });
 
-const Product = mongoose.model("product", productSchema);
+autoIncrement.initialize(mongoose.connection);
+productSchema.plugin(autoIncrement.plugin, "product");
 
-export default Product;
+const products = mongoose.model("product", productSchema);
+
+export default products;
