@@ -1,4 +1,4 @@
-import User from "../model/product.schema";
+import User from "../model/userSchema.js";
 
 export const userLogIn = async (request, response) => {
   try {

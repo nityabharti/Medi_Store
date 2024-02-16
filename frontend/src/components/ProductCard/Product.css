@@ -1,0 +1,25 @@
+.card {
+  margin: 0;
+  padding: 0;
+  border: 5px solid black;
+  height: 320px;
+  width: 250px;
+}
+
+.off {
+  border: 2px solid red;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0px;
+}
+.card-img {
+  border: 2px solid blue;
+  align-items: center;
+  padding-top: 0;
+  margin-bottom: 0;
+}
+.discrip {
+  margin-bottom: 50px;
+  width: 100%;
+  border: 2px solid green;
+}

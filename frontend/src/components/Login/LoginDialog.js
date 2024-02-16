@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import {
   Dialog,
@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 
 import { authenticateSignup } from "../../service/api";
+// import { DataContext } from "../../context/DataProvider";
 
 const Component = styled(Box)`
   height: 70vh;
@@ -106,6 +107,8 @@ const LoginDialog = ({ open, setOpen }) => {
   const [account, toggleAccount] = useState(accountInitialValues.login);
   const [signup, setSignup] = useState(signupInitialValues);
 
+  // const [setAccount] = useContext(DataContext);
+
   const handleClose = () => {
     setOpen(false);
     toggleAccount(accountInitialValues.login);
@@ -121,6 +124,9 @@ const LoginDialog = ({ open, setOpen }) => {
 
   const signupUser = async () => {
     let response = await authenticateSignup(signup);
+    // if (!response) return;
+    // handleClose();
+    // setAccount(signup.firstname);
   };
 
   return (
@@ -138,7 +144,7 @@ const LoginDialog = ({ open, setOpen }) => {
             >
               {account.heading}
             </Typography>
-            <Typography style={{ marginTop: 30 }}>
+            <Typography style={{ marginTop: 30, marginLeft: 5 }}>
               {account.subHeading}
             </Typography>
           </Image>

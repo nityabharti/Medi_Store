@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import Connection from "./database/db";
 import DefaultData from "./default";
@@ -8,6 +9,7 @@ import Router from "./routes/route";
 const app = express();
 dotenv.config();
 
+app.use(cors());
 app.use("/", Router);
 
 const PORT = 8000;

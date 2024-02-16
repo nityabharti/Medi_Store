@@ -1,10 +1,12 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
-import { Box, styled } from "@mui/material";
+import { Box, Typography, styled } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+
+// import { DataContext } from "../../contex/DataProvider";
 
 //Components
 
@@ -32,11 +34,19 @@ const TextWrapper = styled(Box)`
 
 const CustomButtons = () => {
   const [open, setOpen] = useState(false);
+
+  // const [account] = useContext(DataContext);
+
   const openDialog = () => {
     setOpen(true);
   };
   return (
     <CustomContainer>
+      {/* {account ? (
+        <Typography>{account}</Typography>
+      ) : (
+        <TextWrapper onClick={() => openDialog()}>Log In / Sign Up</TextWrapper>
+      )} */}
       <IconWrapper>
         <FavoriteBorderIcon style={{ color: "black" }} />
       </IconWrapper>
